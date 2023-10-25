@@ -11,6 +11,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = await axios.post(`${URL}/logon`, { formData });
+        local.setItem("token", token);
     }
     return (
         <div>
