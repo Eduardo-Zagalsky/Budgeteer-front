@@ -8,7 +8,6 @@ import Savings from './savings';
 import Budget from './budget';
 import Register from './register';
 import Login from './login';
-import Data from './data';
 import "./style.css";
 
 const App = () => (
@@ -31,9 +30,6 @@ const App = () => (
     </Route>
     <Route exact path='/logon'>
       <Login />
-    </Route>
-    <Route exact path='/data'>
-      <Data />
     </Route>
   </BrowserRouter>
 )
