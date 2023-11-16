@@ -7,7 +7,7 @@ const NavBar = () => {
             <h1 id="title">Budgeteer</h1>
             <NavLink className="nav-link" to="/">Home</NavLink>
             <NavLink className="nav-link" to="/register">Sign Up</NavLink>
-            <NavLink className="nav-link" to="/logon">Log In</NavLink>
+            <NavLink className="nav-link" to="/login">Log In</NavLink>
             <NavLink className="nav-link" to="/budget">Budget</NavLink>
             <NavLink className="nav-link" to="/credit">Credit</NavLink>
             <NavLink className="nav-link" to="/savings">Savings</NavLink>
