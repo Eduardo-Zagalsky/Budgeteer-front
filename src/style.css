@@ -2,10 +2,6 @@ div {
     margin: 0;
 }
 
-body {
-    margin: 0;
-}
-
 p {
     margin: 10px;
 }
@@ -20,4 +16,88 @@ h3 {
 
 h4 {
     margin: 5px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    width: 400px;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    background: rgba(95, 165, 95, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+}
+
+form h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: black;
+    text-align: center;
+}
+
+.boxes {
+    position: relative;
+}
+
+.boxes input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.boxes label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.boxes input:focus~label,
+.boxes input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #039c01;
+    font-size: 15px;
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #039c01;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 15px;
+    letter-spacing: 4px
+}
+
+button:hover {
+    background: #23f403;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #7dff74,
+        0 0 25px #7dff74,
+        0 0 50px #7dff74,
+        0 0 100px #7dff74;
 }
