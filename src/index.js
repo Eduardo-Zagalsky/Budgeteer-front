@@ -8,6 +8,7 @@ import Savings from './savings';
 import Budget from './budget';
 import Register from './register';
 import Login from './login';
+import CreditForm from './credit-form';
 import "./style.css";
 
 const App = () => (
@@ -28,8 +29,11 @@ const App = () => (
     <Route exact path='/register'>
       <Register />
     </Route>
-    <Route exact path='/logon'>
+    <Route exact path='/login'>
       <Login />
+    </Route>
+    <Route exact path='/credit-form'>
+      <CreditForm />
     </Route>
   </BrowserRouter>
 )
