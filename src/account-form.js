@@ -1,10 +1,12 @@
-import axios from "axios"
-import { useState } from "react"
-const local = require("localStorage")
-const URL = process.env.FULL_URL;
-const INITIAL_VAL = { name: "", type: "", balance: "" }
+import axios from "axios";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+const local = require("localStorage");
+const URL = process.env.URL;
+const INITIAL_VAL = { name: "", type: "", balance: "" };
 
 const AccountForm = () => {
+    const history = useHistory();
     const [formData, setFormData] = useState(INITIAL_VAL);
     const handleChange = (e) => {
         let { name, value } = e.target;
@@ -12,8 +14,9 @@ const AccountForm = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = local.getItem("token")
+        const token = local.getItem("token");
         await axios.post(`${URL}/account-form`, { headers: token, formData });
+        history.push('/expense-form');
     }
     return (
         <div>
@@ -27,8 +30,9 @@ const AccountForm = () => {
                 <label htmlFor="balance">Balance: </label>
                 <input type="text" name="balance" value={formData.balance} onChange={handleChange} />
 
+                <button type='submit'>Add</button>
             </form>
-        </div>
+        </div >
     )
-}
+};
 export default AccountForm;

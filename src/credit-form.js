@@ -1,10 +1,12 @@
-import axios from "axios"
-import { useState } from "react"
-const local = require("localStorage")
-const URL = process.env.FULL_URL;
-const INITIAL_VAL = { creditor: "", type: "", limit: "", balance: "", interestRate: "", dueDate: "" }
+import axios from "axios";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+const local = require("localStorage");
+const URL = process.env.URL;
+const INITIAL_VAL = { creditor: "", type: "", limit: "", balance: "", interestRate: "", dueDate: "" };
 
 const CreditForm = () => {
+    const history = useHistory();
     const [formData, setFormData] = useState(INITIAL_VAL);
     const handleChange = (e) => {
         let { name, value } = e.target;
@@ -14,6 +16,7 @@ const CreditForm = () => {
         e.preventDefault();
         const token = local.getItem("token")
         await axios.post(`${URL}/credit-form`, { headers: token, formData });
+        history.push('/account-form');
     }
     return (
         <div>
@@ -35,8 +38,10 @@ const CreditForm = () => {
 
                 <label htmlFor="dueDate">Due Date: </label>
                 <input type="text" name="dueDate" value={formData.dueDate} onChange={handleChange} />
+
+                <button type='submit'>Add</button>
             </form>
-        </div>
+        </div >
     )
-}
+};
 export default CreditForm;

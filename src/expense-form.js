@@ -1,10 +1,12 @@
 import axios from "axios"
 import { useState } from "react"
+import { useHistory } from "react-router-dom";
 const local = require("localStorage")
-const URL = process.env.FULL_URL;
+const URL = process.env.URL;
 const INITIAL_VAL = { name: "", type: "", amount: "", description: "", date: "" }
 
 const ExpenseForm = () => {
+    const history = useHistory();
     const [formData, setFormData] = useState(INITIAL_VAL);
     const handleChange = (e) => {
         let { name, value } = e.target;
@@ -14,6 +16,7 @@ const ExpenseForm = () => {
         e.preventDefault();
         const token = local.getItem("token")
         await axios.post(`${URL}/expense-form`, { headers: token, formData });
+        history.push('/');
     }
     return (
         <div>
@@ -32,8 +35,9 @@ const ExpenseForm = () => {
 
                 <label htmlFor="date">Date: </label>
                 <input type="text" name="date" value={formData.date} onChange={handleChange} />
+                <button type='submit'>Add</button>
             </form>
-        </div>
+        </div >
     )
-}
+};
 export default ExpenseForm;
