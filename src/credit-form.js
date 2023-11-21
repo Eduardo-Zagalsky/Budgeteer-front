@@ -37,7 +37,7 @@ const CreditForm = () => {
                 <input type="text" name="interestRate" value={formData.interestRate} onChange={handleChange} />
 
                 <label htmlFor="dueDate">Due Date: </label>
-                <input type="text" name="dueDate" value={formData.dueDate} onChange={handleChange} />
+                <input type="date" name="dueDate" value={formData.dueDate} onChange={handleChange} />
 
                 <button type='submit'>Add</button>
             </form>
