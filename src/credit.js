@@ -7,6 +7,7 @@ const URL = "https://ez-budgeteer.onrender.com";
 const Credit = () => {
     const [date, setDate] = useState(0);
     async function getDate() {
+        const token = local.getItem("token")
         await axios.get(`${URL}/credit`, { headers: token })
     }
     setDate(getDate)
