@@ -1,8 +1,16 @@
+import axios from "axios";
+import { useState } from "react";
+const local = require("localStorage");
+const URL = "https://ez-budgeteer.onrender.com";
+
+
 const Credit = () => {
-    // hardcoded dueDate(due_date), month
-    let date = 15;
+    const [date, setDate] = useState(0);
+    async function getDate() {
+        await axios.get(`${URL}/credit`, headers = token)
+    }
+    setDate(getDate)
     let suffix = ""
-    let monthNum = 7;
     let month = ""
     switch (date) {
         case 1:
@@ -76,10 +84,10 @@ const Credit = () => {
                 they will disappear on their own after 2 full years.</h4>
             <br />
             <h3>Credit Cards</h3>
-            <p>Revolving Lines of Credit, such as credit cards and lines of credit, you can spend more than once and only pay interest on what you spend.</p>
+            <p>Revolving Lines of Credit, such as credit cards and lines of credit, allow  you to spend more than once and only pay interest on what you spend.</p>
             <h4>The most important thing to know here is that Credit Bereaus only see your credit once per month, when your creditors report it.
                 So there is a strategy to maximize your credit impact.</h4>
-            <p>The strategy for building credit is to figure out the due date and plan payments around it, this means that your due date is:
+            <p>The strategy for building credit is to figure out the due date and plan payments around it.</p><br /> <p>Your due date is:
                 the {dueDate} of this month, <b>{month}</b>, so this month you will pay the bill</p>
             <p>{month % 2 === 0 ? <b>Before the {dueDate}</b> : <b>After the {dueDate}, when the bill arrives!</b>}</p>
             <hr />
