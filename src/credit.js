@@ -7,11 +7,12 @@ const URL = "https://ez-budgeteer.onrender.com";
 const Credit = () => {
     const [date, setDate] = useState(0);
     async function getDate() {
-        await axios.get(`${URL}/credit`, headers = token)
+        await axios.get(`${URL}/credit`, { headers: token })
     }
     setDate(getDate)
     let suffix = ""
     let month = ""
+    let monthNum = 7;
     switch (date) {
         case 1:
             suffix = "st"
