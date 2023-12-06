@@ -2,7 +2,8 @@ import axios from "axios"
 import { useState } from "react"
 import { useHistory } from "react-router-dom";
 const local = require("localStorage")
-const URL = "https://ez-budgeteer.onrender.com";
+// const URL = "https://ez-budgeteer.onrender.com";
+const URL = "http://127.0.0.1:5000";
 const INITIAL_VAL = { name: "", email: "", username: "", password: "", income: "", creditScore: "" }
 
 const Register = () => {
