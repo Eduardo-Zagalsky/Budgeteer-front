@@ -1,5 +1,4 @@
 const Home = (props) => {
-
     return (
         <div>
             <h1>Hello {props.user}!</h1>
