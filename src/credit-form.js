@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 const local = require("localStorage");
-const URL = process.env.URL;
+const URL = process.env.REACT_APP_URL;
 const INITIAL_VAL = { creditor: "", type: "", limit: "", balance: "", interestRate: "", dueDate: "" };
 
 const CreditForm = () => {
@@ -14,8 +14,9 @@ const CreditForm = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = local.getItem("token")
-        await axios.post(`${URL}/credit-form`, { headers: token, formData });
+        const value = local.getItem("token")
+        const config = { headers: { token: value } }
+        await axios.post(`${URL}/credit-form`, { formData }, config);
         history.push('/account-form');
     }
     return (
