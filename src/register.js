@@ -2,8 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useHistory } from "react-router-dom";
 const local = require("localStorage")
-// const URL = "https://ez-budgeteer.onrender.com";
-const URL = "http://127.0.0.1:5000";
+const URL = process.env.REACT_APP_URL
 const INITIAL_VAL = { name: "", email: "", username: "", password: "", income: "", creditScore: "" }
 
 const Register = () => {
@@ -16,7 +15,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = await axios.post(`${URL}/signup`, { formData });
-        local.setItem("token", token);
+        local.setItem("token", token.data);
         history.push('/credit-form')
     }
 
