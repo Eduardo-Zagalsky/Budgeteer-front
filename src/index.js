@@ -9,6 +9,9 @@ import Budget from './budget';
 import Register from './register';
 import Login from './login';
 import CreditForm from './credit-form';
+import AccountForm from './account-form';
+import ExpenseForm from './expense-form';
+import Logout from './logout';
 import "./style.css";
 
 const App = () => (
@@ -34,6 +37,15 @@ const App = () => (
     </Route>
     <Route exact path='/credit-form'>
       <CreditForm />
+    </Route>
+    <Route exact path='/account-form'>
+      <AccountForm />
+    </Route>
+    <Route exact path='/expense-form'>
+      <ExpenseForm />
+    </Route>
+    <Route exact path='/logout'>
+      <Logout />
     </Route>
   </BrowserRouter>
 )
