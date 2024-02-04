@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 const local = require("localStorage")
-const URL = process.env.URL;
+const URL = process.env.REACT_APP_URL
 const INITIAL_VAL = { username: "", password: "" }
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = await axios.post(`${URL}/logon`, { formData });
-        local.setItem("token", token);
+        local.setItem("token", token.data);
         history.push('/');
     }
     return (
