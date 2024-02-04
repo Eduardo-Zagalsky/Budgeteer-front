@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useHistory } from "react-router-dom";
 const local = require("localStorage")
-const URL = process.env.URL;
+const URL = process.env.REACT_APP_URL;
 const INITIAL_VAL = { name: "", type: "", amount: "", description: "", date: "" }
 
 const ExpenseForm = () => {
@@ -14,8 +14,9 @@ const ExpenseForm = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = local.getItem("token")
-        await axios.post(`${URL}/expense-form`, { headers: token, formData });
+        const value = local.getItem("token")
+        const config = { headers: { token: value } }
+        await axios.post(`${URL}/expense-form`, { formData }, config);
         history.push('/');
     }
     return (
@@ -34,7 +35,7 @@ const ExpenseForm = () => {
                 <input type="text" name="description" value={formData.description} onChange={handleChange} />
 
                 <label htmlFor="date">Date: </label>
-                <input type="text" name="date" value={formData.date} onChange={handleChange} />
+                <input type="date" name="date" value={formData.date} onChange={handleChange} />
                 <button type='submit'>Add</button>
             </form>
         </div >
