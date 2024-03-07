@@ -1,6 +1,6 @@
 import axios from "axios";
 const local = require("localStorage");
-const URL = "https://ez-budgeteer.onrender.com";
+const URL = process.env.REACT_APP_URL
 
 const Budget = () => {
     async function getBudget() {
