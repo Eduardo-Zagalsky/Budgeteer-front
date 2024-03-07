@@ -1,14 +1,21 @@
 import axios from "axios";
+import { useState, useEffect } from "react";
 const local = require("localStorage");
-const URL = "https://ez-budgeteer.onrender.com";
+const URL = process.env.REACT_APP_URL;
+let resp;
 
 const Credit = () => {
-    async function getCredit() {
-        const token = local.getItem("token")
-        const creditInfo = await axios.get(`${URL}/credit`, { headers: token })
-        return creditInfo;
-    }
-    const credit = getCredit()
+    const [credit, setCredits] = useState();
+    useEffect(() => {
+        async function getCredit() {
+            const value = local.getItem("token")
+            if (value != null) {
+                resp = await axios.get(`${URL}/credit`, { headers: { token: value } });
+            }
+            setCredits(resp);
+        }
+        getCredit();
+    }, []);
     return (
         <div>
             <h1>Credit</h1>
