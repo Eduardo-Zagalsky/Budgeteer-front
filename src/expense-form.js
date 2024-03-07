@@ -12,6 +12,13 @@ const ExpenseForm = () => {
         let { name, value } = e.target;
         setFormData(data => ({ ...data, [name]: value }));
     }
+    const handleAdd = async (e) => {
+        e.preventDefault();
+        const value = local.getItem("token")
+        const config = { headers: { token: value } }
+        await axios.post(`${URL}/expense-form`, { formData }, config);
+        setFormData(INITIAL_VAL)
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         const value = local.getItem("token")
@@ -22,21 +29,29 @@ const ExpenseForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name: </label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} />
-
-                <label htmlFor="type">Type: </label>
-                <input type="text" name="type" value={formData.type} onChange={handleChange} />
-
-                <label htmlFor="amount">Amount: </label>
-                <input type="text" name="amount" value={formData.amount} onChange={handleChange} />
-
-                <label htmlFor="description">Description: </label>
-                <input type="text" name="description" value={formData.description} onChange={handleChange} />
-
-                <label htmlFor="date">Date: </label>
-                <input type="date" name="date" value={formData.date} onChange={handleChange} />
-                <button type='submit'>Add</button>
+                <h2>Expenses</h2>
+                <div className="boxes">
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} />
+                    <label htmlFor="name">Name: </label>
+                </div>
+                <div className="boxes">
+                    <input type="text" name="type" value={formData.type} onChange={handleChange} />
+                    <label htmlFor="type">Type: </label>
+                </div>
+                <div className="boxes">
+                    <input type="text" name="amount" value={formData.amount} onChange={handleChange} />
+                    <label htmlFor="amount">Amount: </label>
+                </div>
+                <div className="boxes">
+                    <input type="text" name="description" value={formData.description} onChange={handleChange} />
+                    <label htmlFor="description">Description: </label>
+                </div>
+                <div className="boxes">
+                    <input type="date" name="date" value={formData.date} onChange={handleChange} />
+                    <label htmlFor="date">Date: </label>
+                </div>
+                <button type="button" onClick={handleAdd}>Add</button>
+                <button type='submit'>Submit</button>
             </form>
         </div >
     )
