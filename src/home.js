@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 const local = require("localStorage");
 const URL = process.env.REACT_APP_URL;
-const resp = null
+let resp = null
 const Home = () => {
     const [user, setUser] = useState(null);
     useEffect(() => {
@@ -23,7 +23,6 @@ const Home = () => {
                         <h3>Your finances:</h3>
                         <li>Income: {user.income}</li>
                         <li>Expenses: {user.expense}</li>
-                        {/* <li>Debts: {user.credit.balance}</li> */}
                     </ul>
                 </div>
                 : <h1>Welcome!</h1>}
