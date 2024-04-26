@@ -18,10 +18,18 @@ const Budget = () => {
     }, []);
     return (
         <div>
-            <p>Your income is <b>${budget.name}</b> and your expenses are <b>${budget.amount}</b>.</p>
-            <h4>Currently your DTI is {(budget.amount * 100)}%</h4>
+            {budget != null ?
+                <table>
+                    <thead>Expenses</thead>
+                    <tbody>
+                        {budget.map((expense) => <div> <tr> <td> {expense['name']} </td><td>{expense.amount}</td></tr></div>)}
+                    </tbody>
+                </table>
+                : <div></div>}
             <p>Ideally you would want your expenses to be less than 45% of your income, so let's try to come up with some ways to make that true!
                 Let's see your expenses and decide which of these you could cut back on to try to get on the best path to financial freedom.</p>
+            <p>Your income is _________ and your expenses are ___________.</p>
+            <h4>Currently your DTI is_________%</h4>
         </div>
     )
 }
