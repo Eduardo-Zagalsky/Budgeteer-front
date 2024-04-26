@@ -10,14 +10,15 @@ const Home = () => {
             const value = local.getItem("token")
             if (value != null) {
                 resp = await axios.get(`${URL}/`, { headers: { token: value } });
+                
+                setUser(resp.data);
             }
-            setUser(resp);
         }
         getUser();
     }, []);
     return (
         <div>
-            {user != null ?
+            {user !== null ?
                 <div><h1>Hello {user.full_name}!</h1>
                     <ul>
                         <h3>Your finances:</h3>
