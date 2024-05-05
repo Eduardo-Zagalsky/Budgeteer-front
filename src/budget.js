@@ -12,7 +12,7 @@ const Budget = () => {
             if (value != null) {
                 resp = await axios.get(`${URL}/expense`, { headers: { token: value } });
             }
-            setBudget(resp);
+            setBudget(resp.data);
         }
         getBudget();
     }, []);
@@ -20,9 +20,9 @@ const Budget = () => {
         <div>
             {budget != null ?
                 <table>
-                    <thead>Expenses</thead>
+                    <thead><th>Expenses</th></thead>
                     <tbody>
-                        {budget.map((expense) => <div> <tr> <td> {expense['name']} </td><td>{expense.amount}</td></tr></div>)}
+                        {budget.map((expense) => <tr><td>{expense['name']} </td><td>{expense.amount}</td></tr>)}
                     </tbody>
                 </table>
                 : <div></div>}
