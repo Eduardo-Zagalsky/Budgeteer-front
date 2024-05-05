@@ -12,21 +12,31 @@ const Credit = () => {
             if (value != null) {
                 resp = await axios.get(`${URL}/credit`, { headers: { token: value } });
             }
-            setCredits(resp);
+            setCredits(resp.data);
         }
         getCredit();
     }, []);
     return (
         <div>
             <h1>Credit</h1>
-            <p>name:{credit.ownerId}</p>
-            <p>account:{credit.id} $</p>
-            <p>creditor:{credit.creditor}</p>
-            <p>type:{credit.type}</p>
-            <p>balance:{credit.balance}</p>
-            <p>limit:{credit.limit}</p>
-            <p>interest_rate:{credit.interest_rate}</p>
-            <p>due_date:{credit.due_date}</p>
+            {credit != null ?
+                <table>
+                    <thead><th>Accounts</th></thead>
+                    <tbody>
+                        {credit.map((item) => {
+                            <tr>
+                                <th>name:{item.ownerId}</th>
+                                <td>account:{item.id}</td>
+                                <td>creditor:{item.creditor}</td>
+                                <td>type:{item.type}</td>
+                                <td>balance:{item.balance}</td>
+                                <td>limit:{item.limit}</td>
+                                <td>interest_rate:{item.interest_rate}</td>
+                                <td>due_date:{item.due_date}</td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table> : <div></div>}
             <hr />
             <blockquote>
                 If you plan on borrowing money, whether a fixed loan or a revolving loan(credit cards) here are somethings to know.
