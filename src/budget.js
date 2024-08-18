@@ -20,7 +20,7 @@ const Budget = () => {
         <div>
             {budget != null ?
                 <table>
-                    <thead><th>Expenses</th></thead>
+                    <thead><th colSpan={2}>Expenses</th></thead>
                     <tbody>
                         {budget.map((expense) => <tr><td>{expense['name']} </td><td>{expense.amount}</td></tr>)}
                     </tbody>
