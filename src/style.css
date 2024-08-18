@@ -101,3 +101,20 @@ button:hover {
         0 0 50px #7dff74,
         0 0 100px #7dff74;
 }
+
+table {
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+}
+
+thead {
+    font-size: 25px;
+    background-color: rgba(125, 125, 125, 0.75);
+    text-align: center;
+}
+
+td {
+    border-style: dashed;
+    text-align: center;
+}
