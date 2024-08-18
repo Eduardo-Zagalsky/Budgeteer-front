@@ -21,19 +21,21 @@ const Credit = () => {
             <h1>Credit</h1>
             {credit != null ?
                 <table>
-                    <thead><th>Accounts</th></thead>
+                    <thead><th colSpan={8}>Accounts</th></thead>
                     <tbody>
                         {credit.map((item) => {
-                            <tr>
-                                <th>name:{item.ownerId}</th>
-                                <td>account:{item.id}</td>
-                                <td>creditor:{item.creditor}</td>
-                                <td>type:{item.type}</td>
-                                <td>balance:{item.balance}</td>
-                                <td>limit:{item.limit}</td>
-                                <td>interest_rate:{item.interest_rate}</td>
-                                <td>due_date:{item.due_date}</td>
-                            </tr>
+                            return (
+                                <tr>
+                                    <td>name: {item.name}</td>
+                                    <td>account: {item.account}</td>
+                                    <td>creditor: {item.creditor}</td>
+                                    <td>type: {item.type}</td>
+                                    <td>balance: {item.balance}</td>
+                                    <td>limit: {item.limit}</td>
+                                    <td>interest_rate: {item.interest_rate}</td>
+                                    <td>due_date: {item.due_date}</td>
+                                </tr>
+                            )
                         })}
                     </tbody>
                 </table> : <div></div>}
