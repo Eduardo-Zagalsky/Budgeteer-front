@@ -1,24 +1,40 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useContext } from "react";
+import UserContext from "./context";
 import { useHistory } from "react-router-dom";
 const local = require("localStorage")
 const URL = process.env.REACT_APP_URL
 const INITIAL_VAL = { name: "", email: "", username: "", password: "", income: "", creditScore: "" }
+let resp = null
+
 
 const Register = () => {
+    let user = useContext(UserContext)
     const history = useHistory()
     const [formData, setFormData] = useState(INITIAL_VAL);
+    const [error, setError] = useState("");
     const handleChange = (e) => {
         let { name, value } = e.target;
         setFormData(data => ({ ...data, [name]: value }));
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await axios.post(`${URL}/signup`, { formData });
-        local.setItem("token", token.data);
-        history.push('/credit-form')
+        try {
+            const token = await axios.post(`${URL}/signup`, { formData });
+            local.setItem("token", token.data);
+            const value = local.getItem("token")
+            if (value != null) {
+                resp = await axios.get(`${URL}/`, { headers: { token: value } });
+                user.setUser(resp.data);
+                history.push('/credit-form')
+            }
+        }
+        catch (error) {
+            console.log(error)
+            e = "username already exists"
+            setError(e)
+        }
     }
-
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -47,6 +63,7 @@ const Register = () => {
                     <input type="text" name="creditScore" value={formData.creditScore} onChange={handleChange} />
                     <label htmlFor="creditScore">Credit Score: </label>
                 </div>
+                <div>{error}</div>
 
                 <button type='submit'>Register</button>
             </form>
