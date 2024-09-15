@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 const local = require("localStorage");
 const URL = process.env.REACT_APP_URL
 let resp;
@@ -8,6 +9,7 @@ let totalExpense;
 let DTI;
 
 const Budget = () => {
+    const history = useHistory()
     const [budget, setBudget] = useState(null);
     useEffect(() => {
         async function getBudget() {
@@ -22,6 +24,9 @@ const Budget = () => {
         getBudget();
     }, []);
     DTI = ((totalExpense / income) * 100).toFixed(2);
+    const handleClick = () => {
+        history.push("/expense-form")
+    }
     return (
         <div>
             {budget != null ?
@@ -32,6 +37,9 @@ const Budget = () => {
                     </tbody>
                 </table>
                 : <div></div>}
+            <form>
+                <button onClick={handleClick}>Add</button>
+            </form>
             <p>Ideally you would want your expenses to be less than 45% of your income, so let's try to come up with some ways to make that true!
                 Let's see your expenses and decide which of these you could cut back on to try to get on the best path to financial freedom.</p>
             <p>Your income is <b>{income}</b> and your expenses are <b>{totalExpense}</b>.</p>
