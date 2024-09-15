@@ -24,7 +24,7 @@ const AccountForm = () => {
         const value = local.getItem("token")
         const config = { headers: { token: value } }
         await axios.post(`${URL}/account-form`, { formData }, config);
-        history.push('/expense-form');
+        history.goBack();
     }
     return (
         <div>

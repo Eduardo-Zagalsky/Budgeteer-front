@@ -24,7 +24,7 @@ const CreditForm = () => {
         const value = local.getItem("token")
         const config = { headers: { token: value } }
         await axios.post(`${URL}/credit-form`, { formData }, config);
-        history.push('/account-form');
+        history.goBack();
     }
     return (
         <div>

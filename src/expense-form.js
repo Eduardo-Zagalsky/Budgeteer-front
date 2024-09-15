@@ -24,7 +24,7 @@ const ExpenseForm = () => {
         const value = local.getItem("token")
         const config = { headers: { token: value } }
         await axios.post(`${URL}/expense-form`, { formData }, config);
-        history.push('/');
+        history.goBack();
     }
     return (
         <div>
