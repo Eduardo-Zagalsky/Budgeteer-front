@@ -1,12 +1,13 @@
 import axios from "axios"
 import { useState } from "react"
-import { useHistory } from "react-router-dom";
+import { useHistory,useLocation } from "react-router-dom";
 const local = require("localStorage")
 const URL = process.env.REACT_APP_URL;
 const INITIAL_VAL = { name: "", type: "", amount: "", description: "", date: "" }
 
 const ExpenseForm = () => {
     const history = useHistory();
+    const location = useLocation();
     const [formData, setFormData] = useState(INITIAL_VAL);
     const handleChange = (e) => {
         let { name, value } = e.target;
@@ -24,7 +25,11 @@ const ExpenseForm = () => {
         const value = local.getItem("token")
         const config = { headers: { token: value } }
         await axios.post(`${URL}/expense-form`, { formData }, config);
-        history.goBack();
+        if(location.search.includes('q=test')){
+            history.push('/credit-form?q=test')
+        }else{
+            history.goBack();
+        }
     }
     return (
         <div>
