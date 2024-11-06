@@ -37,9 +37,9 @@ const Budget = () => {
                     </tbody>
                 </table>
                 : <div></div>}
-            <form>
-                <button onClick={handleClick}>Add</button>
-            </form>
+
+            <button id="toForm" onClick={handleClick}>Add</button>
+
             <p>Ideally you would want your expenses to be less than 45% of your income, so let's try to come up with some ways to make that true!
                 Let's see your expenses and decide which of these you could cut back on to try to get on the best path to financial freedom.</p>
             <p>Your income is <b>{income}</b> and your expenses are <b>{totalExpense}</b>.</p>
