@@ -77,7 +77,20 @@ form h2 {
     color: #039c01;
     font-size: 15px;
 }
-
+#toForm{
+    background-color: grey;
+    color: white;
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: none;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 15px;
+    letter-spacing: 2px
+}
 button {
     position: relative;
     display: inline-block;
