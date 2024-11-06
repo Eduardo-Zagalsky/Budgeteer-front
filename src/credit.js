@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 const local = require("localStorage");
 const URL = process.env.REACT_APP_URL;
 let resp;
 
 const Credit = () => {
+    const history = useHistory()
     const [credit, setCredits] = useState();
     useEffect(() => {
         async function getCredit() {
@@ -16,6 +18,9 @@ const Credit = () => {
         }
         getCredit();
     }, []);
+    const handleClick = () => {
+        history.push("/credit-form")
+    }
     return (
         <div>
             <h1>Credit</h1>
@@ -39,6 +44,7 @@ const Credit = () => {
                         })}
                     </tbody>
                 </table> : <div></div>}
+                <button id="toForm" onClick={handleClick}>Add</button>
             <hr />
             <blockquote>
                 If you plan on borrowing money, whether a fixed loan or a revolving loan(credit cards) here are somethings to know.
