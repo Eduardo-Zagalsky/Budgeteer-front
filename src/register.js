@@ -27,7 +27,6 @@ const Register = () => {
                 resp = await axios.get(`${URL}/`, { headers: { token: value } });
                 user.setUser(resp.data);
                 history.push('/account-form?q=test')
-                // sumbit app goes to account form, but then returns i need to send it to expense form, then home.
             }
         }
         catch (error) {
